@@ -216,3 +216,17 @@ function prlp_get_hidden_account_fields() {
   }
   return $fields;
 }
+
+/**
+ * Implements hook_module_implements_alter().
+ */
+function prlp_module_implements_alter(&$implementations, $hook) {
+  // Ensure Password Policy form alteration occurs after PRLP form alteration.
+  // This allows PRLP to add the password element before Password Policy
+  // modifies it.
+  if (module_exists("password_policy") && $hook == 'form_alter') {
+    $group = $implementations['password_policy'];
+    unset($implementations['password_policy']);
+    $implementations['password_policy'] = $group;
+  }
+}
