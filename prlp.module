@@ -230,3 +230,25 @@ function prlp_module_implements_alter(&$implementations, $hook) {
     $implementations['password_policy'] = $group;
   }
 }
+
+/**
+ * Implements hook_variable_info() so that variable values can be
+ * translated.
+ */
+function prlp_variable_info($options) {
+  $variables['prlp_confirmation_message_existing_users'] = array(
+    'type' => 'string',
+    'title' => t('Confirmation Message For New Users', array(), $options),
+    'default' => 'Thank you for setting your password, the registration process has completed.',
+    'description' => t('Confirmation message that will be shown to new users after they set their password.', array(), $options),
+    'required' => FALSE,
+  );
+  $variables['prlp_confirmation_message_new_users'] = array(
+    'type' => 'drupal_path',
+    'title' => t('Confirmation Message For Existing Users', array(), $options),
+    'default' => 'Your new password has been saved.',
+    'description' => t('Confirmation message that will be shown to existing users after they changed their password.', array(), $options),
+    'required' => FALSE,
+  );
+  return $variables;
+}
