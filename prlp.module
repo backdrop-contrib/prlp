@@ -36,6 +36,8 @@ function prlp_form_user_pass_reset_alter(&$form, &$form_state) {
     if (empty($action)) {
       // Inject the username/password change form into the current form.
       user_account_form($form, $form_state);
+      $user_account_form_id = 'user_account_form';
+      drupal_alter(array('form','form_user_account_form'), $form, $form_state, $user_account_form_id);
       // ???
       $form['#user_category'] = 'account';
       // Hide certain fields in $form.
