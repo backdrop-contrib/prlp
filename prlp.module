@@ -234,8 +234,9 @@ function prlp_module_implements_alter(&$implementations, $hook) {
 }
 
 /**
- * Implements hook_variable_info() so that variable values can be
- * translated.
+ * Implements hook_variable_info().
+ *
+ * Allow to translate variable values.
  */
 function prlp_variable_info($options) {
   $variables['prlp_confirmation_message_existing_users'] = array(
@@ -243,6 +244,7 @@ function prlp_variable_info($options) {
     'title' => t('Confirmation message for existing users', array(), $options),
     'default' => 'Your new password has been saved.',
     'description' => t('Confirmation message that will be shown to existing users after they changed their password.', array(), $options),
+    'group' => 'prlp_settings',
     'required' => FALSE,
   );
   $variables['prlp_confirmation_message_new_users'] = array(
@@ -250,7 +252,19 @@ function prlp_variable_info($options) {
     'title' => t('Confirmation message for new users', array(), $options),
     'default' => 'Thank you for setting your password, the registration process has completed.',
     'description' => t('Confirmation message that will be shown to new users after they set their password.', array(), $options),
+    'group' => 'prlp_settings',
     'required' => FALSE,
   );
   return $variables;
+}
+
+/**
+ * Implements hook_variable_group_info().
+ */
+function prlp_variable_group_info() {
+  $groups['prlp_settings'] = array(
+    'title' => t('Password reset settings'),
+    'description' => t('Settings of the prlp module.'),
+  );
+  return $groups;
 }
