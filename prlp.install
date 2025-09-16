@@ -10,7 +10,7 @@
  */
 function prlp_uninstall() {
   // Remove the module's configuration on uninstall.
-  config_delete('prlp.settings');
+  config('prlp.settings')->delete();
 }
 
 /**
