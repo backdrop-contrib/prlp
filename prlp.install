@@ -2,13 +2,54 @@
 
 /**
  * @file
- * Password Reset Landing Page installation/uninstallation.
+ * Install/uninstall/update hooks for PRLP (Backdrop).
  */
 
 /**
  * Implements hook_uninstall().
  */
 function prlp_uninstall() {
-  module_load_include('inc', 'prlp', 'prlp.admin');
-  prlp_delete_config_variables();
+  // Remove the module's configuration on uninstall.
+  config_delete('prlp.settings');
+}
+
+/**
+ * Migrate D7 variables -> Backdrop config.
+ *
+ * Run this on sites upgraded from Drupal 7 (or early Backdrop ports that still
+ * used variables). Safe to re-run: it sets values if present, then deletes vars.
+ */
+function prlp_update_1000() {
+  $config = config('prlp.settings');
+
+  // Pull from variables table with sane fallbacks.
+  $config->set('prlp_password_required', (int) update_variable_get('prlp_password_required', 1));
+  $config->set('prlp_destination', update_variable_get('prlp_destination', 'user/%uid/edit'));
+  $config->set('prlp_hidden_fields', update_variable_get('prlp_hidden_fields', "signature_settings\npicture"));
+  $config->set('prlp_hidden_account_fields', update_variable_get('prlp_hidden_account_fields', "mail"));
+  $config->set('prlp_confirmation_message_new_users', update_variable_get('prlp_confirmation_message_new_users', 'Thank you for setting your password, the registration process has completed.'));
+  $config->set('prlp_confirmation_message_existing_users', update_variable_get('prlp_confirmation_message_existing_users', 'Your new password has been saved.'));
+  $config->save();
+
+  // Clean up the old variables.
+  update_variable_del('prlp_password_required');
+  update_variable_del('prlp_destination');
+  update_variable_del('prlp_hidden_fields');
+  update_variable_del('prlp_hidden_account_fields');
+  update_variable_del('prlp_confirmation_message_new_users');
+  update_variable_del('prlp_confirmation_message_existing_users');
+
+  return t('Migrated PRLP settings from variables to config.');
+}
+
+/**
+ * (Optional) Normalize destination if it was blank in variables.
+ */
+function prlp_update_1001() {
+  $config = config('prlp.settings');
+  $dest = trim((string) $config->get('prlp_destination'));
+  if ($dest === '') {
+    $config->set('prlp_destination', 'user/%uid/edit')->save();
+    return t('Set default PRLP destination to user/%uid/edit.');
+  }
 }

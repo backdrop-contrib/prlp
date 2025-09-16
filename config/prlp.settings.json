@@ -1,0 +1,9 @@
+{
+    "_config_name": "prlp.settings",
+    "prlp_password_required": 1,
+    "prlp_destination": "user/%uid/edit",
+    "prlp_hidden_fields": "signature_settings\npicture",
+    "prlp_hidden_account_fields": "mail",
+    "prlp_confirmation_message_new_users": "Thank you for setting your password, the registration process has completed.",
+    "prlp_confirmation_message_existing_users": "Your new password has been saved."
+}
