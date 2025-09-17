@@ -30,11 +30,12 @@ Bugs and Feature requests should be reported in the
 - Ported to Backdrop by [Justin Keiser](https://github.com/keiserjb)
 - Maintained for Drupal by
   - [Christain Crawford](https://www.drupal.org/u/ccrawford91)
-  - [Jitesh Doshi]('https://www.drupal.org/u/jitesh-doshi')
-  - [Caetano Silveira]('https://www.drupal.org/u/caetano388')
-  - [Norman Kämper-Leymann]('https://www.drupal.org/u/normallol')
+  - [Jitesh Doshi](https://www.drupal.org/u/jitesh-doshi)
+  - [Caetano Silveira](https://www.drupal.org/u/caetano388)
+  - [Norman Kämper-Leymann](https://www.drupal.org/u/normallol)
 
 ## License
 
 This project is GPL v2 software. See the LICENSE.txt file in this directory for
 complete text.
+
