@@ -1,4 +1,7 @@
-# Password Reset Landing Page (PRLP)
+# Password Reset Landing Page (PRLP) (Deprecated)
+
+> **Deprecated:** This module is no longer necessary. The functionality it provides has been included in Backdrop core since its initial release.
+> See [Features Added to Core](https://docs.backdropcms.org/documentation/features-added-to-core) for details.
 
 This module enhances Backdrop's out-of-the-box password reset landing page by
 adding new password inputs beside the simple "Log In" button that you see
@@ -30,12 +33,11 @@ Bugs and Feature requests should be reported in the
 - Ported to Backdrop by [Justin Keiser](https://github.com/keiserjb)
 - Maintained for Drupal by
   - [Christain Crawford](https://www.drupal.org/u/ccrawford91)
-  - [Jitesh Doshi](https://www.drupal.org/u/jitesh-doshi)
-  - [Caetano Silveira](https://www.drupal.org/u/caetano388)
-  - [Norman Kämper-Leymann](https://www.drupal.org/u/normallol)
+  - [Jitesh Doshi]('https://www.drupal.org/u/jitesh-doshi')
+  - [Caetano Silveira]('https://www.drupal.org/u/caetano388')
+  - [Norman Kämper-Leymann]('https://www.drupal.org/u/normallol')
 
 ## License
 
 This project is GPL v2 software. See the LICENSE.txt file in this directory for
 complete text.
-
